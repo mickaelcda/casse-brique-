@@ -101,7 +101,7 @@ function dessine() {
         if (y + vitesseY < rayonBalle) {
             vitesseY = -vitesseY
         }
-        if (y + vitesseY > canvas.height - rayonBalle - barreHauteur) {
+        if (y + vitesseY > canvas.height - rayonBalle - barreHauteur ) {
             
             if (x > barreX - rayonBalle && x < barreX + barreLargeur + rayonBalle) {
                 vitesseX = vitesseX + 0.1;
@@ -109,8 +109,11 @@ function dessine() {
                 vitesseY = -vitesseY;
             }
             else { 
-                fin = true;
-                affichageScore.innerHTML = `Perdu <br> Clique sur le casse brique pour recommencer.`
+                setTimeout(() => {
+                    fin = true;
+                    affichageScore.innerHTML = `Perdu <br> Clique sur le casse brique pour recommencer.`   
+                },1000)
+              
             }
         }
         x += vitesseX;
@@ -179,4 +182,14 @@ let posXBarreCanvas = e.clientX - canvas.offsetLeft;
     }
 
 }
+
+// Recommencer
+canvas.addEventListener('click', () => {
+
+    if(fin === true){
+        fin = false;
+        document.location.reload();
+    }
+
+})
 
